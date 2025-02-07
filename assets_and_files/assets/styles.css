@@ -1,0 +1,13 @@
+body {
+	background-color: #415b78;
+}
+
+a {
+	color: white;
+	text-decoration: underline;
+}
+
+button {
+	background-color: pink;
+	display: block;
+}
