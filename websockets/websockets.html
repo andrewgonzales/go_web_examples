@@ -1,0 +1,29 @@
+<input id="input" type="text" />
+<button onclick="send()">Send</button>
+<pre id="output"></pre>
+<script>
+  var input = document.getElementById("input");
+  var output = document.getElementById("output");
+  var socket = new WebSocket("ws://localhost:80/echo");
+
+  socket.onopen = function () {
+    output.innerHTML = `${output.innerHTML}Status: Connected\n`;
+  };
+
+  socket.onmessage = function (e) {
+    output.innerHTML = `${output.innerHTML}Server: ${e.data}\n`;
+  };
+
+  const userInput = document.getElementById("input");
+  function send() {
+    socket.send(userInput.value);
+    userInput.value = "";
+  }
+
+  // Add event listener for Enter key press
+  userInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      send();
+    }
+  });
+</script>
